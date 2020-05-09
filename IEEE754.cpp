@@ -53,11 +53,11 @@ int main()
     ans.push_back(sbit); // pushing the sign bit to the vector
     reverse(ans.begin(),ans.end()); // as I'm reversing the whole vector so we're gonna have the sign to at 0th postion
 
-    for(int i=1;i<v.size();i++)  // 
+    for(int i=1;i<v.size();i++)  // sign bit and exp r pore integer part er binary push kortesi
         ans.push_back(v[i]);
 
 
-    for(int i=0;i<frac.size();i++)
+    for(int i=0;i<frac.size();i++) // ekdm last e fraction er binary push kortesi
         ans.push_back(frac[i]);
 
     for(int i=0,j=1;i<32;i++,j++)
@@ -68,6 +68,8 @@ int main()
     cout << endl;
     return 0;    
 }
+//test case 
+
 //291.95
 //0100 0011 1001 0001 1111 1001 1001 1010
 
