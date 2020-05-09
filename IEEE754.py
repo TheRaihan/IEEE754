@@ -1,5 +1,3 @@
-import math
-
 def decimalToBinary(num,arr):
     if num > 1:                         #This function converts decimal number
         decimalToBinary(num // 2,arr)   #to binary and prints it
