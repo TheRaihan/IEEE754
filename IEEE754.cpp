@@ -6,35 +6,38 @@ int main()
     vector<int> v,ans,frac;
     double x,prec,y1;
     int in,in1,y, sbit, exp, cnt,moved=0;
-    cin >> x ;
+    cin >> x ; // 9.3
 
-    (x > 0) ? sbit = 0 : sbit = 1;  // if pos number sign bit = 0 else sign bit = 1 and x = abs[x], 
-    x = abs(x);                   // cause you have to ignore the negative value to convert to binary
+    (x > 0) ? sbit = 0 : sbit = 1;     // if pos number sign bit = 0 else sign bit = 1 and x = abs[x],
+    x = abs(x);                           // cause you have to ignore the negative value to convert to binary
 
-    in = in1 = x;                       // integer part in in vaiable
-    prec = x - in;                // precision part in prec variable
+    in = in1 = x;                       // integer part in 'in' vaiable
+    prec = x - in;                        // precision part in prec variable
 
-    while(in!=0)                // converting int value to binary 
+    while(in!=0)                    // converting int value to binary 
     {
-        y = in%2;
-        v.push_back(y);
-        in /= 2 ;
+        y = in%2; 
+        v.push_back(y); 
+        in /= 2 ; 
     }
     reverse(v.begin(),v.end()); // converting done
+
+    // 9 - 1001 ---> 3 + 127 --> binary 
 
     y1=prec;
     int flag = 0;
 
-    for(int i=1; i<=100; i++) // ei jaygay joga khichuri pakaisi... but Dont touch, it works
+    for(int i=1; i<=100; i++) // fraction to binary and keeping the track where i've got the first one 
     {
         y1 = y1*2;
         y = y1;
-        if(in1 !=0) frac.push_back(y);
-        else if( !flag && y==1) {
+
+        if( !flag && y==1) { // and keeping the track where i've got the first one 
             moved = i;
             flag =1;
         }
-        else if(flag) frac.push_back(y);
+
+        frac.push_back(y);
         y1-=y;
     }
 
@@ -56,8 +59,9 @@ int main()
     for(int i=1;i<v.size();i++)  // sign bit and exp r pore integer part er binary push kortesi
         ans.push_back(v[i]);
 
-
-    for(int i=0;i<frac.size();i++) // ekdm last e fraction er binary push kortesi
+    int frac_start = 0;
+    if(in1==0) frac_start = moved;
+    for(int i=frac_start;i<frac.size();i++) // ekdm last e fraction er binary push kortesi
         ans.push_back(frac[i]);
 
     for(int i=0,j=1;i<32;i++,j++)
@@ -75,3 +79,8 @@ int main()
 
 //0.00017
 //0011 1001 0011 0010 0100 0010 0000 0111
+
+
+// <signbit> <expo 8 bit> <decimal bit>
+// 0 11001011 001 
+//0.3
